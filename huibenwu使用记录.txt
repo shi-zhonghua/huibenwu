@@ -1,0 +1,101 @@
+1、使用less 样式
+第一步安装  安装less依赖，npm install less less-loader --save
+第二步配置 
+在build 文件夹下 webpack.base.fonf.js 里 添加  
+     {
+        test: /\.less$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'less-loader'
+        ]
+      },
+
+2、图片滚动，使用插件 vue-awesome-swiper@2.6.7 —-save   使用2.6.7版本  手机端轮播图片
+安装命令  
+npm install vue-awesome-swiper --save
+
+在main.js 文件里引用  以下文件 
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+
+Vue.use(VueAwesomeSwiper)
+
+import 'swiper/dist/css/swiper.css'
+这是单页面组件里 swiper data 参数
+data() {
+	return {
+	    swiperOption: {
+	    pagination: '.swiper-pagination', //设置分页样式
+	    loop: true, //循环轮播
+            speed: 400, //自动播放 速度
+            autoplay: 2000,//自动播放
+            autoplayDisableOnInteraction: false,
+            observer:true,//修改swiper自己或子元素时，自动初始化swiper
+            observeParents:true//修改swiper的父元素时，自动初始化swiper
+	      }
+	    }
+	}
+
+3、调用本地json 数据 json文件要放在 static 文件夹里
+	3.1使用axios发送请求
+	安装插件  axios 
+	安装命令  npm install axios --save
+	在使用的单页面组件里 添加  import axios from 'axios' 调用axios 
+	全局使用的写法，在main.js 文件到导入
+	import  Axios  from ‘axios’
+
+	Vue.use(Axios) 
+	
+	3.2 使用 vue-resource 发送请求
+	安装插件 vue-resource 
+	安装命令 npm install vue-resource --save
+	在使用单页面组件里 添加 import vueResource from ‘vue-resource’
+	
+	这是全局使用的写法 在main.js中导入，  如下所示：
+
+	import  VueResource  from 'vue-resource'
+
+	Vue.use(VueResource) 
+
+
+4、安装时间插件 vue-datepicker
+安装命令： npm install vue-datepicker —save
+再安装 moment 安装命令： npm install moment —save
+因为vue-datepicker是依赖vue和moment的,所以也要安装moment；
+
+
+在用到该插件的地方引入：
+import Datepicker from 'vue-datepicker/vue-datepicker-es6.vue'
+
+不能选择日期的问题解决办法 把 这段代码 
+limit: [{
+      type: 'weekday',
+      available: [1, 2, 3, 4, 5]
+},
+
+替换成 下面这段代码
+limit: [{
+  type: Array,
+  default:function _default(){
+    return [];
+  }
+}]
+
+5、Vuex  状态管理
+安装命令： npm install vuex —save
+
+引用vuex 
+import Vuex from ‘vuex’
+import Vue from ‘vue’
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+
+}) 
+
+
+注意事项
+json 文件里不能有注释
+
+图片需要js 引入 写法src: require('../assets/slideShow/pic1.jpg'),

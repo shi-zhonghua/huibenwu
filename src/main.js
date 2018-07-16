@@ -3,6 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+// 引入公共样式
+import './assets/style/border.css'
+import './assets/style/reset.css'
+
 
 Vue.config.productionTip = false
 
